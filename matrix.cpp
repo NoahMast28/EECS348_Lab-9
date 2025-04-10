@@ -1,14 +1,24 @@
 #include "matrix.hpp"
 #include <iostream>
+#include <stdexcept>
 
 // Constructor that initializes an NxN matrix filled with 0's
-Matrix::Matrix(size_t N) {
-    data.resize(N, std::vector<int>(N, 0));
+Matrix::Matrix(size_t N) : size(N) {
+    data = new int*[size];
+    for (std::size_t i = 0; i < size; i++) {
+        data[i] = new int[size]{};
+    }
 }
 
 // Constructor that initializes a matrix with a given array
-Matrix::Matrix(std::vector<std::vector<int>> numbers) {
-    data = numbers;
+Matrix::Matrix(int** nums, std::size_t N) : size(N) {
+    data = new int*[size];
+    for (std::size_t i = 0; i < size; i++) {
+        data[i] = new int[size];
+        for (std::size_t j = 0; j < size; j++) {
+            data[i][j] = nums[i][j];
+        }
+    }
 }
 
 // Returns the sum of two matrices
