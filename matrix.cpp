@@ -13,7 +13,7 @@ Matrix<T>::Matrix(size_t N) : size(N) {
 
 // Constructor that initializes a matrix with a given array
 template <typename T>
-Matrix<T>::Matrix(T** numbers, std::size_t N) : size(N) {
+Matrix<T>::Matrix(T** nums, std::size_t N) : size(N) {
     data = new int*[size]; // Allocates an array of pointers for each row
     for (std::size_t i = 0; i < size; i++) { // Iterates over each row in the matrix
         data[i] = new int[size]; // Allocates an array of integers for the ith row

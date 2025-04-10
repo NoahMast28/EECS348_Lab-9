@@ -7,12 +7,12 @@
 
 class Matrix {
 private:
-    int** data;
+    T** data;
     std::size_t size;
 
 public:
     Matrix(std::size_t N);
-    Matrix(int**nums, std::size_t N);
+    Matrix(T**nums, std::size_t N);
     Matrix(const Matrix& other);
     Matrix& operator=(const Matrix& other);
     ~Matrix();
