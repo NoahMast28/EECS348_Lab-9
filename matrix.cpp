@@ -3,23 +3,70 @@
 #include <stdexcept>
 
 // Constructor that initializes an NxN matrix filled with 0's
-Matrix::Matrix(size_t N) : size(N) {
-    data = new int*[size];
-    for (std::size_t i = 0; i < size; i++) {
-        data[i] = new int[size]{};
+template <typename T>
+Matrix<T>::Matrix(size_t N) : size(N) {
+    data = new int*[size]; // Allocates an array of pointers for each row
+    for (std::size_t i = 0; i < size; i++) { // Iterates over each row in the matrix
+        data[i] = new int[size]{}; // Allocates an array of integers for the ith row, initializing each value to 0
     }
 }
 
 // Constructor that initializes a matrix with a given array
-Matrix::Matrix(int** nums, std::size_t N) : size(N) {
-    data = new int*[size];
-    for (std::size_t i = 0; i < size; i++) {
-        data[i] = new int[size];
-        for (std::size_t j = 0; j < size; j++) {
-            data[i][j] = nums[i][j];
+template <typename T>
+Matrix<T>::Matrix(T** numbers, std::size_t N) : size(N) {
+    data = new int*[size]; // Allocates an array of pointers for each row
+    for (std::size_t i = 0; i < size; i++) { // Iterates over each row in the matrix
+        data[i] = new int[size]; // Allocates an array of integers for the ith row
+        for (std::size_t j = 0; j < size; j++) { // Iterates over each column in the matrix
+            data[i][j] = nums[i][j]; // Copies each element to the target matrix
         }
     }
 }
+
+// Constructor that copies one matrix's contents to another
+template <typename T>
+Matrix<T>::Matrix(const Matrix& other) : size(other.size) {
+    data = new int*[size]; // Allocates an array of pointers for each row
+    for (std::size_t i = 0; i < size; ++i) { // Iterates over each row in the matrix
+        data[i] = new int[size]; // Allocates an array of integers for the ith row
+        for (std::size_t j = 0; j < size; ++j) { // Iterates over each column in the matrix
+            data[i][j] = other.data[i][j]; // Copies the other matrix's ith, jth value
+        }
+    }
+}
+
+// Destructor which cleans up the memory to avoid leaks
+template <typename T>
+Matrix<T>::~Matrix() {
+    for (std::size_t i = 0; i < size; ++i) { // Iterates over each row in the matrix
+        delete[] data[i]; // Deletes the ith row
+    }
+
+    delete[] data; // Deletes the array of row pointers, fully deleting the matrix
+}
+
+// Assignment operator which proper copting of one matrix to another and cleans up memory
+template <typename T>
+Matrix<T>& Matrix<T>::operator=(const Matrix& other) {
+    if (this != &other) { // Checks if we're trying to assign the matrix to itself
+        for (std::size_t i = 0; i < size; ++i) // Iterates over each row in the matrix
+            delete[] data[i]; // Deletes the ith row
+
+        delete[] data; // Deletes the array of row pointers, fully deleting the matrix
+
+        size = other.size; // Sets the matrix's size to the size of other
+        data = new int*[size]; // Allocates an array of pointers for each row
+        for (std::size_t i = 0; i < size; ++i) { // Iterates over each row in the matrix
+            data[i] = new int[size]; // Allocates an array of integers for the ith row
+            for (std::size_t j = 0; j < size; ++j) { // Iterates over each column in the matrix
+                data[i][j] = other.data[i][j]; // Copies the other matrix's ith, jth value
+            }
+        }
+    }
+
+    return *this; // Returns the current matrix
+}
+
 
 // Returns the sum of two matrices
 Matrix Matrix::operator+(const Matrix &rhs) const {
