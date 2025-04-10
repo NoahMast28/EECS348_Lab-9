@@ -38,8 +38,8 @@ Upon analyzing how the github tests work, they appear to be attempting to
 initialize the matrices with vectors. In the lab 9 instructions, it states: "For
 this assignment, you must define and use a custom Matrix class to store the
 matrix data rather than using std::vector directly." So given that I cannot use
-<vector> it seems that the test cases will always fail. However, when my program
-is run with a test file of the proper format (as stated in the Lab 9
+the vector library it seems that the test cases will always fail. However, when
+my program is run with a test file of the proper format (as stated in the Lab 9
 instructions), it does produce the correct result. So while my program does fail
 the github actions test cases, it does still do what the lab instructions
 require of it.
