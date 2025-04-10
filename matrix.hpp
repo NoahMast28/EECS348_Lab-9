@@ -22,7 +22,7 @@ public:
 
     Matrix operator+(const Matrix &rhs) const;
     Matrix operator*(const Matrix &rhs) const;
-    void set_value(std::size_t i, std::size_t j, int n);
+    void set_value(std::size_t i, std::size_t j, T n);
     T get_value(std::size_t i, std::size_t j) const;
     std::size_t get_size() const;
     T sum_diagonal_major() const;
