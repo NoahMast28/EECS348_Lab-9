@@ -1,15 +1,21 @@
 #ifndef __MATRIX_HPP__
 #define __MATRIX_HPP__
 
-#include <cstdint>
-#include <vector>
+#include <cstddef>
 
 // all of your function definitions should be in this file now
 
 class Matrix {
+private:
+    int** data;
+    std::size_t size;
+
 public:
     Matrix(std::size_t N);
-    Matrix(std::vector<std::vector<int>> nums);
+    Matrix(int**nums, std::size_t N);
+    Matrix(const Matrix& other);
+    Matrix& operator=(const Matrix& other);
+    ~Matrix();
 
     Matrix operator+(const Matrix &rhs) const;
     Matrix operator*(const Matrix &rhs) const;
