@@ -73,8 +73,8 @@ template <typename T>
 Matrix<T> Matrix<T>::operator+(const Matrix &rhs) const {
     Matrix result(size); // Creates a matrix of correct size to store the result
 
-    for (std::size_t i = 0; i < N; i++) { // Iterates over the rows of the matrices
-        for (std::size_t j = 0; j < N; j++) { // Iterates over the columns of the matrices
+    for (std::size_t i = 0; i < size; i++) { // Iterates over the rows of the matrices
+        for (std::size_t j = 0; j < size; j++) { // Iterates over the columns of the matrices
             result.data[i][j] = data[i][j] + rhs.data[i][j]; // Puts the sum in the resultant matrix
         }
     }
@@ -86,10 +86,10 @@ template <typename T>
 Matrix<T> Matrix<T>::operator*(const Matrix &rhs) const {
     Matrix result(size); // Creates a matrix of correct size to store the result
 
-    for (std::size_t i = 0; i < N; i++) { // Iterates over the rows of this matrix
-        for (std::size_t j = 0; j < N; j++) { // Iterates over the columns of the rhs matrix
+    for (std::size_t i = 0; i < size; i++) { // Iterates over the rows of this matrix
+        for (std::size_t j = 0; j < size; j++) { // Iterates over the columns of the rhs matrix
             result.data[i][j] = 0; // Initializes the value at 0 in the resulting matrix
-            for (std::size_t k = 0; k < N; k++) { // Iterates over the elements for the dot product
+            for (std::size_t k = 0; k < size; k++) { // Iterates over the elements for the dot product
                 result.data[i][j] += data[i][k] * rhs.data[k][j]; // Puts the dot product in the resultant matrix
             }
         }
@@ -119,7 +119,7 @@ T Matrix<T>::get_value(std::size_t i, std::size_t j) const {
 
 // Returns the size of the matrix
 template <typename T>
-std::size_t Matrix<T>::get_size const {
+std::size_t Matrix<T>::get_size() const {
     return size;
 }
 

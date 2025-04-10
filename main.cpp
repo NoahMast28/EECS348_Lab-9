@@ -48,6 +48,33 @@ int main(int argc, char *argv[]) {
         Matrix<int> matrix1(matrix_1, N); // Creates the matrix object with the first matrix
         Matrix<int> matrix2(matrix_2, N); // Creates the matrix object with the second matrix
 
+        // Prints the first matrix
+        std::cout << "Matrix 1:" << std::endl;
+        matrix1.print_matrix();
+
+        // Prints the second matrix
+        std::cout << "\nMatrix 2:" << std::endl;
+        matrix2.print_matrix();
+
+        // Prints the sum of the two matrices
+        std::cout << "\nMatrix Sum:" << std::endl;
+        (matrix1 + matrix2).print_matrix();
+
+        // Prints the product of the two matrices
+        std::cout << "\nMatrix Product:" << std::endl;
+        (matrix1 * matrix2).print_matrix();
+
+        std::cout << "\nSum of Major Diagonal (Matrix 1): " << matrix1.sum_diagonal_major() << std::endl; // Prints the sum of the major diagonal of the first matrix
+        std::cout << "Sum of Minor Diagonal (Matrix 1): " << matrix1.sum_diagonal_minor() << std::endl; // Prints the sum of the minor diagonal of the first matrix
+
+        // Deletes the matrices in order to clean up the memory
+        for (std::size_t i = 0; i < N; ++i) {
+            delete[] matrix_1[i];
+            delete[] matrix_2[i];
+        }
+        delete[] matrix_1;
+        delete[] matrix_2;
+
     } else if (type_flag == 1) {
         double** matrix_1 = new double*[N]; // Creates an array of size N for the first matrix
         double** matrix_2 = new double*[N]; // Creates an array of size N for the second matrix
@@ -74,36 +101,36 @@ int main(int argc, char *argv[]) {
         Matrix<double> matrix1(matrix_1, N); // Creates the matrix object with the first matrix
         Matrix<double> matrix2(matrix_2, N); // Creates the matrix object with the second matrix
 
+        // Prints the first matrix
+        std::cout << "Matrix 1:" << std::endl;
+        matrix1.print_matrix();
+
+        // Prints the second matrix
+        std::cout << "\nMatrix 2:" << std::endl;
+        matrix2.print_matrix();
+
+        // Prints the sum of the two matrices
+        std::cout << "\nMatrix Sum:" << std::endl;
+        (matrix1 + matrix2).print_matrix();
+
+        // Prints the product of the two matrices
+        std::cout << "\nMatrix Product:" << std::endl;
+        (matrix1 * matrix2).print_matrix();
+
+        std::cout << "\nSum of Major Diagonal (Matrix 1): " << matrix1.sum_diagonal_major() << std::endl; // Prints the sum of the major diagonal of the first matrix
+        std::cout << "Sum of Minor Diagonal (Matrix 1): " << matrix1.sum_diagonal_minor() << std::endl; // Prints the sum of the minor diagonal of the first matrix
+
+        // Deletes the matrices in order to clean up the memory
+        for (std::size_t i = 0; i < N; ++i) {
+            delete[] matrix_1[i];
+            delete[] matrix_2[i];
+        }
+        delete[] matrix_1;
+        delete[] matrix_2;
+
     } else {
         return 1;
     }
-
-    // Prints the first matrix
-    std::cout << "Matrix 1:" << std::endl;
-    matrix1.print_matrix();
-
-    // Prints the second matrix
-    std::cout << "\nMatrix 2:" << std::endl;
-    matrix2.print_matrix();
-
-    // Prints the sum of the two matrices
-    std::cout << "\nMatrix Sum:" << std::endl;
-    (matrix1 + matrix2).print_matrix();
-
-    // Prints the product of the two matrices
-    std::cout << "\nMatrix Product:" << std::endl;
-    (matrix1 * matrix2).print_matrix();
-
-    std::cout << "\nSum of Major Diagonal (Matrix 1): " << matrix1.sum_diagonal_major() << std::endl; // Prints the sum of the major diagonal of the first matrix
-    std::cout << "Sum of Minor Diagonal (Matrix 1): " << matrix1.sum_diagonal_minor() << std::endl; // Prints the sum of the minor diagonal of the first matrix
-
-    // Deletes the matrices in order to clean up the memory
-    for (std::size_t i = 0; i < N; ++i) {
-        delete[] matrix_1[i];
-        delete[] matrix_2[i];
-    }
-    delete[] matrix_1;
-    delete[] matrix_2;
 
     return 0;
 }
